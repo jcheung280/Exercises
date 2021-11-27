@@ -43,7 +43,7 @@ def get_data():
 if __name__ == "__main__":
     website = "https://www.google.co.uk/search?q=weather"
     parser = argparse.ArgumentParser()
-    #insert city
+    #insert city. If no city name is entered, it will 
     parser.add_argument("city", nargs="?", default="")
     args = parser.parse_args()
     city = args.city
@@ -71,7 +71,7 @@ with open(file_path, "w") as o:
         print("Wind:", data["wind"])
         print("Today and next 7 days' weather:")
         for nextdayweather in data["followingdays"]:
-            print("{"*1, nextdayweather["name"], "}"*1)
+            print("{"*2, nextdayweather["name"], "}"*2)
             print("Status:", nextdayweather["weather"])
             print("Temperature Range: " + nextdayweather['min_temp'], hyphen, nextdayweather['max_temp'], unit)
 
