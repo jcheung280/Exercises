@@ -10,7 +10,7 @@ import argparse
 def get_data():
     request = requests.Session()
     #search for your own user agent on Google
-    request.headers['User-Agent'] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36"
+    request.headers['User-Agent'] = ""
     dataone = request.get(website)
 
     soup = bs(dataone.text, "html.parser")
@@ -35,16 +35,16 @@ def get_data():
         max_temp = nextdaytemp[0].text
         min_temp = nextdaytemp[2].text
         followingdays.append({"name": dayday, "weather": nextdayweatherdesc, "max_temp": max_temp, "min_temp": min_temp})
-    # append to result
+    # save data in 'result'
     result['followingdays'] = followingdays
     return result
 
 #parse arguments
-#Insert the city here
 if __name__ == "__main__":
     website = "https://www.google.co.uk/search?q=weather"
     parser = argparse.ArgumentParser()
-    parser.add_argument("city", nargs="?", default="Los Angeles")
+    #insert city
+    parser.add_argument("city", nargs="?", default="")
     args = parser.parse_args()
     city = args.city
     if city:
@@ -75,5 +75,4 @@ with open(file_path, "w") as o:
             print("Status:", nextdayweather["weather"])
             print("Temperature Range: " + nextdayweather['min_temp'], hyphen, nextdayweather['max_temp'], unit)
 
-#open file
-f = open 'filepath', "r")
+
