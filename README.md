@@ -1,2 +1,2 @@
-# Exercises
-This is a weather scraper practice.
+# Weatherscraperpractice
+This is a weather data scraper practice.
